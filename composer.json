@@ -1,14 +1,7 @@
 {
     "name": "botmaster/address",
     "description": "This package used to manage addresses and its dependencies",
-    "authors": [
-        {
-            "name": "Tony lea",
-            "email": "tony@devdojo.com"
-        }
-    ],
     "type": "library",
-    "license": "SRD",
     "minimum-stability": "dev",
     "require": {}
 }
