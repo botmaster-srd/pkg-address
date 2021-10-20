@@ -1,10 +1,14 @@
 <?php
 
 use Botmaster\Address\Http\Controllers\AddressController;
+use Botmaster\Address\Http\Controllers\StateController;
 
-Route::get('address', function(){
-        echo 'Hello from the Address package!';
-    });
+Route::prefix('address')->name('address.')->group(function () {
 
-Route::get('address',  [AddressController::class, 'index'] );
+    Route::get('/',  [AddressController::class, 'index'] )->name('index');
+
+    Route::resource('state', StateController::class);
+
+});
+
 
