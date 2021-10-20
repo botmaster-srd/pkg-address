@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -22,7 +23,9 @@ class CreateAddressesTable extends Migration
                 $table->enum('status',['active','inactive'])->default('active');
                 $table->timestamps();
             });
-            if (config('load_state')) {
+
+
+            if (Config::get('load_state') == true) {
                 DB::table('states')->insert(array (
                     0 =>
                     array (
@@ -318,7 +321,7 @@ class CreateAddressesTable extends Migration
                 $table->enum('status',['active','inactive'])->default('active');
                 $table->timestamps();
             });
-            if (config('load_district')) {
+            if ( Config::get('load_district')  == true) {
 
                 DB::table('districts')->insert(array (
                     0 =>
