@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Botmaster - State List</title>
+    <title>Botmaster - Address List</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,31 +16,34 @@
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align:center">
-                    State List
+                    Address List
                 </h1>
                 <hr>
-                <table class="table table-light table-bordered table-hover table-striped">
+                <table class="table table-light">
                     <thead>
-                        <tr>
+                       <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Address Type</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Address</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->status }}</td>
+                                <td>{{ $item->user_id }}</td>
+                                <td>{{ $item->address_type }}</td>
+                                <td>{{ $item->state_id }}</td>
+                                <td>{{ $item->city_id }}</td>
                                 <td>
-                                    <div class="btn-group" role="group" aria-label="Button group">
-                                        <a href="{{ route('address.state.show',$item->id) }}" class="btn btn-info">View</a>
-                                        <a href="{{ route('address.state.edit',$item->id) }}" class="btn btn-warning">Edit</a>
-                                    </div>
+                                    {{ $item->address }},<br>
+                                    Pincode: {{ $item->pincode }}<hr>
+                                    <b>Landmark: </b>{{ $item->landmark }}
                                 </td>
+                                <td>{{ $item->status }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -48,6 +51,7 @@
             </div>
         </div>
     </div>
+
 
 
     <!-- Bootstrap JavaScript Libraries -->

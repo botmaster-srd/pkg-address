@@ -10,27 +10,46 @@ class StateController extends Controller
 {
     public function index()
     {
-        $state = State::all();
+        $data = State::all();
 
         // $result = "This is Address Package from Controller > View";
 
-        return view('address::state_index', compact('state'));
+        return view('address::state_index', compact('data'));
     }
 
     public function show($id)
     {
-        return "This is Show State function";
+        $data = State::find($id);
+        // dd($data->toArray());
+
+        return view('address::state_show', compact('data'));
     }
 
 
     public function create()
     {
-        return "This is Create State function";
+        return view('address::state_create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return "This is Store State function";
+
+
+         $request->validate([
+            'name' => 'required',
+            'status' => 'required|in:active,inactive',
+        ]);
+        dd($request->status);
+
+        // dd($validate);
+
+        State::create([
+            'name'=> $request->name,
+            'status'=> $request->status,
+        ]);
+
+        // return redirect()->route('address.state.index')
+        //     ->with('success', 'State created successfully.');
     }
 
 
@@ -38,8 +57,6 @@ class StateController extends Controller
     {
         return "This is Edit State function";
     }
-
-
 
 
     public function destroy($id)

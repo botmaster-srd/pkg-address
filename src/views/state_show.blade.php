@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Botmaster - State List</title>
+    <title>Botmaster - State Details</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,31 +16,19 @@
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align:center">
-                    State List
+                    State Details
                 </h1>
+                <a class="btn btn-info float-right" href="{{route('address.state.index', )}}">State List</a>
+                <a class="btn btn-warning float-right" href="{{route('address.state.edit', $data->id)}}">Edit State</a>
+                <a class="btn btn-primary float-right" href="{{route('address.state.create')}}">Add State</a>
                 <hr>
-                <table class="table table-light table-bordered table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
 
+                <table class="table table-light table-bordered table-hover table-striped">
                     <tbody>
-                        @foreach ($data as $item)
+                        @foreach ($data->toArray() as $key=>$item)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->status }}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Button group">
-                                        <a href="{{ route('address.state.show',$item->id) }}" class="btn btn-info">View</a>
-                                        <a href="{{ route('address.state.edit',$item->id) }}" class="btn btn-warning">Edit</a>
-                                    </div>
-                                </td>
+                                <td>{{ $key }}</td>
+                                <td>{{ $item }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -48,7 +36,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
