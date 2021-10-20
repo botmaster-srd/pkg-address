@@ -17,6 +17,12 @@ class StateController extends Controller
         return view('address::state_index', compact('state'));
     }
 
+    public function show($id)
+    {
+        return "This is Show State function";
+    }
+
+
     public function create()
     {
         return "This is Create State function";
@@ -32,6 +38,9 @@ class StateController extends Controller
     {
         return "This is Edit State function";
     }
+
+
+
 
     public function destroy($id)
     {
