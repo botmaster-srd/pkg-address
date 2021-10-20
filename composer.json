@@ -2,6 +2,26 @@
     "name": "botmaster/address",
     "description": "This package used to manage addresses and its dependencies",
     "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Botmaster SRD",
+            "email": "botmaster.srd@gmail.com"
+        }
+    ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Botmaster\\Address\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Botmaster\\Address\\AddressServiceProvider"
+            ]
+        }
+    }
+
 }
