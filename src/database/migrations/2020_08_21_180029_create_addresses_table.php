@@ -24,8 +24,7 @@ class CreateAddressesTable extends Migration
                 $table->timestamps();
             });
 
-
-            if (Config::get('load_state') == true) {
+            if (Config::get('address.load_state') == true) {
                 DB::table('states')->insert(array (
                     0 =>
                     array (
@@ -321,7 +320,7 @@ class CreateAddressesTable extends Migration
                 $table->enum('status',['active','inactive'])->default('active');
                 $table->timestamps();
             });
-            if ( Config::get('load_district')  == true) {
+            if ( Config::get('address.load_district')  == true) {
 
                 DB::table('districts')->insert(array (
                     0 =>
