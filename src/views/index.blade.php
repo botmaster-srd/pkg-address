@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Calculator</title>
+	<title>Addresses</title>
 </head>
 <body>
 	<h1 style="text-align:center">
@@ -9,4 +9,4 @@
 		<span style="font-weight:normal">{{ $result }}</span>
 	</h1>
 </body>
-</html
+</html>
