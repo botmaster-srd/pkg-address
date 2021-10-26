@@ -74,7 +74,6 @@ class StateController extends Controller
     public function store(Request $request)
     {
 
-
         $rules = [
             'name' => 'required|unique:States',
             'status' => 'required|in:active,inactive'
