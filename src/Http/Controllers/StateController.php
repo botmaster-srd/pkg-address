@@ -5,51 +5,112 @@ namespace Botmaster\Address\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Botmaster\Address\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StateController extends Controller
 {
     public function index()
     {
-        $data = State::all();
+        $data = State::get(['id','name','status']);
 
-        // $result = "This is Address Package from Controller > View";
+        if ($data->count() == 0) {
 
-        return view('address::state_index', compact('data'));
+            $status = 200;
+            $result = [
+                'data' => null,
+                'status' => 404,
+                'message' => array('error'=>['States not found']),
+                'content_type' => 'JSON String'
+            ];
+            return response()->json($result, 200);
+        }
+
+        $status = 200;
+        $result = [
+            'data' => $data,
+            'status' => $status,
+            'message' => array('success'=>['Success!']),
+            'content_type' => 'JSON String'
+        ];
+        return response()->json($result, 200);
+
     }
 
     public function show($id)
     {
         $data = State::find($id);
-        // dd($data->toArray());
 
-        return view('address::state_show', compact('data'));
+        if ($data == null) {
+
+            $status = 200;
+            $result = [
+                'data' => null,
+                'status' => 404,
+                'message' => array('error'=>['State not found']),
+                'content_type' => 'JSON String'
+            ];
+            return response()->json($result, 200);
+        }
+
+        $status = 200;
+        $result = [
+            'data' => $data,
+            'status' => $status,
+            'message' => array('success'=>['Success!']),
+            'content_type' => 'JSON String'
+        ];
+        return response()->json($result, 200);
     }
-
 
     public function create()
     {
-        return view('address::state_create');
+        if (config('address.is_view_published')) {
+            return view('botmaster/address/state_create');
+        }else{
+            return 'nothing';
+        }
     }
 
     public function store(Request $request)
     {
 
 
-         $request->validate([
-            'name' => 'required',
-            'status' => 'required|in:active,inactive',
-        ]);
-        dd($request->status);
+        $rules = [
+            'name' => 'required|unique:States',
+            'status' => 'required|in:active,inactive'
+        ];
 
-        // dd($validate);
+        $custom_message = [];
 
-        State::create([
-            'name'=> $request->name,
-            'status'=> $request->status,
-        ]);
+        $validator = Validator::make($request->all(), $rules, $custom_message);
 
-        // return redirect()->route('address.state.index')
-        //     ->with('success', 'State created successfully.');
+        if ($validator->fails()) {
+
+
+
+            $status = 206;
+            $result = [
+                'data' => null,
+                'status' => $status,
+                'message' => $validator->errors(),
+                'content_type' => 'JSON String'
+            ];
+            return response()->json($result, 200);
+        }
+
+        $data = State::create(
+            ['name'=>$request->name, 'status'=>$request->status]
+        );
+
+        $status = 200;
+        $result = [
+            'data' => $data,
+            'status' => $status,
+            'message' => array('success'=>['State added successfully!']),
+            'content_type' => 'JSON String'
+        ];
+        return response()->json($result, 200);
+
     }
 
 

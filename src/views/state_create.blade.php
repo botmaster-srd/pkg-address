@@ -12,27 +12,19 @@
   </head>
   <body>
 
-
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
                         Create State
-                        <a class="btn btn-info" style="float:right:" href="{{route('address.state.index', )}}">State List</a>
+                        <a class="btn btn-info" style="float:right:" href="{{route('address.state.index' )}}">State List</a>
                     </div>
                     <div class="card-body">
 
-                        @if($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
+                        @if($errors)
+                            <h4>{{$errors->first()}}</h4>
+                        @endif
 
                         <form action="{{route('address.state.store')}}" method="post">
                             <div class="form-group mt-3">

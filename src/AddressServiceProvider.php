@@ -1,6 +1,7 @@
 <?php
 
 namespace Botmaster\Address;
+
 use Illuminate\Support\ServiceProvider;
 
 class AddressServiceProvider extends ServiceProvider
@@ -36,6 +37,13 @@ class AddressServiceProvider extends ServiceProvider
             __DIR__.'/config/address.php' => config_path('address.php'),
         ]);
 
+        $this->publishes([
+            __DIR__.'/views' => $this->app->resourcePath('views/botmaster/address'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/Http/Controllers/' => $this->app->basePath('app/Http/Controllers/Botmaster'),
+        ]);
 
     }
 }
